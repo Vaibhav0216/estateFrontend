@@ -2,7 +2,7 @@ import React from "react";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { app } from "../firebase";
 import { useDispatch } from "react-redux";
-import { signInSuccess } from "../redux/user/userSlice";
+import { signInFailure, signInSuccess } from "../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function OAuth() {
@@ -25,9 +25,16 @@ export default function OAuth() {
           photo: result.user.photoURL,
         }),
       });
-      const data = await res.json();
-      dispatch(signInSuccess(data));
-      navigate("/");
+      if (!res.ok) {
+        // Handle HTTP error, for example:
+        console.error("Server error:", res); 
+        dispatch(signInFailure(res.Response.satatusText));
+        // You might also want to throw an error or handle it in some way
+      } else {
+        const data = await res.json();
+        dispatch(signInSuccess(data));
+        navigate("/");
+      }
     } catch (error) {
       console.log("could not sign in with google", error);
     }
