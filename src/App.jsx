@@ -6,6 +6,7 @@ import SignUp from './Pages/SignUp'; // Fixed typo here
 import Profile from './Pages/Profile';
 import About from './Pages/About';
 import Header from './Components/Header';
+import CreateListing from './Pages/CreateListing';
 import PrivateRoute from './Components/PrivateRoute';
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
             <Route path='/sign-up' element={<SignUp/>} /> {/* Fixed component name */}
             <Route element={<PrivateRoute/>}> 
               <Route path='/profile' element={<Profile/>} />
+              <Route path='/create-listing' element={<CreateListing/>} />
             </Route>
             <Route path='/about' element={<About/>} />
         </Routes>
