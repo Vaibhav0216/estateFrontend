@@ -31,7 +31,7 @@ export default function CreateListing() {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log(formData);
+ 
   const handleImageSubmit = (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
       setUploading(true);
@@ -139,14 +139,16 @@ export default function CreateListing() {
         },
         body: JSON.stringify({
           ...formData,
-          userRef: currentUser._id,
+          userRef: currentUser._id, 
         }),
       });
+      console.log("res:- ",res);
       const data = await res.json();
       setLoading(false);
       if (data.success === false) {
         setError(data.message);
       }
+      console.log("data:- ",data);
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
