@@ -8,6 +8,10 @@ export default defineConfig({
       '/api': 'https://backend-v6pj.onrender.com',
       secure: false,
     },
+    host: true,
+    strictPort: true,
+    port: 8000,
   },
   plugins: [react()],
+  
 })
