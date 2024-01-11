@@ -6,11 +6,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
-        secure: false,
+        // target: 'http://localhost:8080', 
+        target: 'https://backend-v6pj.onrender.com',
+        secure: false, 
       },
-    },
-  },
+    }, 
+  }, 
 
   plugins: [react()],
-}); 
+});  
